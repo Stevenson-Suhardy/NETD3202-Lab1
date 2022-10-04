@@ -40,11 +40,7 @@ namespace NETD3202_Lab1
 
         private void buttonAlter_Click(object sender, RoutedEventArgs e)
         {
-            programList[selectedIndex].ProjectName = textBoxProjectName.Text;
-            programList[selectedIndex].Budget = textBoxBudget.Text;
-            programList[selectedIndex].AmountSpent = textBoxSpent.Text;
-            programList[selectedIndex].HoursRemaining = textBoxEstimatedHours.Text;
-            programList[selectedIndex].ProjectStatus = comboBoxStatus.Text;
+            UpdateList(ref programList, selectedIndex);
             if (programList[selectedIndex].SetValue())
             {
                 SetTextBoxValues(ref programList, selectedIndex);
@@ -69,6 +65,15 @@ namespace NETD3202_Lab1
         {
             listBoxProjects.Items.RemoveAt(currentIndex);
             listBoxProjects.Items.Insert(currentIndex, programList[currentIndex].ProjectName);
+        }
+
+        private void UpdateList(ref List<Program>programList, int selectedIndex)
+        {
+            programList[selectedIndex].ProjectName = textBoxProjectName.Text;
+            programList[selectedIndex].Budget = textBoxBudget.Text;
+            programList[selectedIndex].AmountSpent = textBoxSpent.Text;
+            programList[selectedIndex].HoursRemaining = textBoxEstimatedHours.Text;
+            programList[selectedIndex].ProjectStatus = comboBoxStatus.Text;
         }
     }
 }
