@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NETD3202_Lab1"
         mc:Ignorable="d"
-        Title="CODE IT INC." Height="500" Width="800" ResizeMode="NoResize">
+        Title="CODE IT INC." Height="500" Width="800" ResizeMode="NoResize" Closed="MainWindow1_Closed">
     <Grid Grid.Column="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />

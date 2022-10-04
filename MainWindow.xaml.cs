@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * Name: Stevenson Suhardy
+ * Date: October 4, 2022
+ * Student ID: 100839397
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,25 +32,27 @@ namespace NETD3202_Lab1
         public MainWindow()
         {
             InitializeComponent();
-            if (MainWindow1.Focus())
-            {
-            }
         }
         /// <summary>
         /// This event will trigger when the create button is clicked. It will validate all the inputs by the user and then when all the input has passed the validation, it will create a new object Program called newProject and pass in all the user input into the class using parameterized constructor. After that, add the object to the list and display it in the listbox then, clear all the user inputs in the textbox.
         /// </summary>
         private void buttonCreate_Click(object sender, RoutedEventArgs e)
         {
+            // Creating a new Program object
             Program newProject = new Program(textBoxProjectName.Text, textBoxBudget.Text, textBoxSpent.Text, textBoxEstimatedHours.Text, comboBoxStatus.Text);
-            if (newProject.SetValue())
+            // Checking to see if all the passed in value by the user is valid.
+            if (newProject.SetValue(textBoxProjectName, ref textBoxBudget, ref textBoxSpent, ref textBoxEstimatedHours, comboBoxStatus))
             {
+                // Add the new object to the list
                 programList.Add(newProject);
-
+                // Add the new object projectName to the list box
                 listBoxProjects.Items.Add(newProject.ProjectName);
                 SetDefault();
             }
         }
-
+        /// <summary>
+        /// This function reset all the textbox and combo box to default.
+        /// </summary>
         private void SetDefault()
         {
             textBoxProjectName.Clear();
@@ -54,79 +62,30 @@ namespace NETD3202_Lab1
             comboBoxStatus.Text = "Requirements";
         }
 
-        double projectBudget;
-        double budgetSpent;
-        double estimatedHours;
-        public bool ValidateInput()
-        {
-            bool isValid = true;
-            if (textBoxProjectName.Text == string.Empty)
-            {
-                isValid = false;
-                MessageBox.Show("Project Name cannot be empty. Please enter the project name.", "INVALID PROJECT NAME", MessageBoxButton.OK, MessageBoxImage.Error);
-                return isValid;
-            }
-            if (textBoxBudget.Text == string.Empty)
-            {
-                isValid = false;
-                MessageBox.Show("Budget cannot be empty. Please enter the project budget.", "INVALID PROJECT BUDGET", MessageBoxButton.OK, MessageBoxImage.Error);
-                return isValid;
-            }
-            else if (double.TryParse(textBoxBudget.Text, out projectBudget))
-            {
-                isValid = true;
-            }
-            else
-            {
-                isValid = false;
-                MessageBox.Show("Project Budget must be a number or a decimal number.", "INVALID PROJECT BUDGET", MessageBoxButton.OK, MessageBoxImage.Error);
-                return isValid;
-            }
-            if (textBoxSpent.Text == string.Empty)
-            {
-                isValid = false; 
-                MessageBox.Show("Budget Spent cannot be empty. Please enter the amount of budget spent for the project.", "INVALID PROJECT AMOUNT SPENT", MessageBoxButton.OK, MessageBoxImage.Error);
-                return isValid;
-            }
-            else if (double.TryParse(textBoxSpent.Text, out budgetSpent))
-            {
-                isValid = true;
-            }
-            else
-            {
-                isValid = false;
-                MessageBox.Show("Budget Spent must be a number or a decimal number.", "INVALID PROJECT AMOUNT SPENT", MessageBoxButton.OK, MessageBoxImage.Error);
-                return isValid;
-            }
-            if (textBoxEstimatedHours.Text == string.Empty)
-            {
-                isValid = false;
-                MessageBox.Show("Estimated hours cannot be empty. Please enter the estimated hours that will take for the project to finish.", "INVALID ESTIMATED HOURS", MessageBoxButton.OK, MessageBoxImage.Error);
-                return isValid;
-            }
-            else if (double.TryParse(textBoxEstimatedHours.Text, out estimatedHours))
-            {
-                isValid = true;
-            }
-            else
-            {
-                isValid = false;
-                MessageBox.Show("Estimated hours must be a number or a decimal number.", "INVALID ESTIMATED HOURS", MessageBoxButton.OK, MessageBoxImage.Error);
-                return isValid;
-            }
-
-            return isValid;
-        }
-
+        /// <summary>
+        /// This event handler will occur when someone double clicks a project in the list box. This will open up a new window and displaying all the information about the project. The user has the option to change the information for the project.
+        /// </summary>
+        
         private void ListBoxClick(object sender, MouseButtonEventArgs e)
         {
+            // If the user selects a project
             if (listBoxProjects.SelectedIndex >= 0)
             {
+                // Set the current index to the selected index
                 currentIndex = listBoxProjects.SelectedIndex;
             }
+            // Creating a new DisplayProject object called newWindow and passing in the list, current index, and the listbox
             DisplayProject newWindow = new DisplayProject(ref programList, currentIndex, ref listBoxProjects);
+            // Showing the new window
             newWindow.Show();
-            Application.Current.MainWindow = newWindow;
+        }
+        /// <summary>
+        /// This event handler will occur when the main window closes. It will shutdown the application.
+        /// </summary>
+        private void MainWindow1_Closed(object sender, EventArgs e)
+        {
+            // Shutdown the app
+            Application.Current.Shutdown();
         }
     }
 }
