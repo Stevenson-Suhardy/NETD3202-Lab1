@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32802.440
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillingApp", "BillingApp.csproj", "{896A5F71-B5A7-49A7-8D39-72CADE417D01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{896A5F71-B5A7-49A7-8D39-72CADE417D01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{896A5F71-B5A7-49A7-8D39-72CADE417D01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{896A5F71-B5A7-49A7-8D39-72CADE417D01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{896A5F71-B5A7-49A7-8D39-72CADE417D01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5D481B48-4903-4EEB-90CD-FBC28A106440}
+	EndGlobalSection
+EndGlobal
